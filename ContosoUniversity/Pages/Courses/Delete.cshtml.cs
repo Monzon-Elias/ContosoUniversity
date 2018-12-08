@@ -21,6 +21,7 @@ namespace ContosoUniversity.Pages.Courses
         [BindProperty]
         public Course Course { get; set; }
 
+        //Update the OnGetAsync method in the Pages/Courses/Details.cshtml.cs file:
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
@@ -37,6 +38,7 @@ namespace ContosoUniversity.Pages.Courses
             }
             return Page();
         }
+        //end
 
         public async Task<IActionResult> OnPostAsync(int? id)
         {
