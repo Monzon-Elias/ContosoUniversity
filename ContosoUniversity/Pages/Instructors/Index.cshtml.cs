@@ -31,10 +31,14 @@ namespace ContosoUniversity.Pages.Instructors
                   .Include(i => i.CourseAssignments)
                     .ThenInclude(i => i.Course)
                         .ThenInclude(i => i.Department)
+
+            //           // The current code specifies eager loading for Enrollments and Students:
             //                    .Include(i => i.CourseAssignments)
             //.ThenInclude(i => i.Course)
             //    .ThenInclude(i => i.Enrollments)
             //        .ThenInclude(i => i.Student)
+            //        //end
+
             //      .AsNoTracking()
                   .OrderBy(i => i.LastName)
                   .ToListAsync();
@@ -50,6 +54,8 @@ namespace ContosoUniversity.Pages.Instructors
             if (courseID != null)
             {
                 CourseID = courseID.Value;
+
+                //Update the OnGetAsync with the following code:
                 var selectedCourse = Instructor.Courses.Where(x => x.CourseID == courseID).Single();
                 await _context.Entry(selectedCourse).Collection(x => x.Enrollments).LoadAsync();
                 foreach (Enrollment enrollment in selectedCourse.Enrollments)
@@ -57,6 +63,7 @@ namespace ContosoUniversity.Pages.Instructors
                     await _context.Entry(enrollment).Reference(x => x.Student).LoadAsync();
                 }
                 Instructor.Enrollments = selectedCourse.Enrollments;
+                //end
             }
         }
     }
