@@ -259,3 +259,5 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+/ContosoUniversity/Models/Instructors/Index.cshtml
+/ContosoUniversity/Models/Instructors/Index.cshtml.cs
